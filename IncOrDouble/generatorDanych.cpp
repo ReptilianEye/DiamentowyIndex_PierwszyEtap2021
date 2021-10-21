@@ -8,9 +8,10 @@ using namespace std;
 int main()
 {
     srand((unsigned)time(NULL));
-    int n = 10;
+    int n = 50;
     int maxPrzedzial = 1000;
+    cout << n << endl;
     for (int i = 0; i < n; i++)
-        cout << rand() % maxPrzedzial << " ";
+        cout <<  maxPrzedzial << " ";
     return 0;
 }
