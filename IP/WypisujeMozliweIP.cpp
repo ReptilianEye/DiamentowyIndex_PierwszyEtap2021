@@ -25,7 +25,7 @@ void wypisujeIP(int *TIP, int i, int iloscKropek, string IP, int n)
                 return;
             if (liczbaPoKropce.length() > 3)
                 return;
-            if (liczbaPoKropce.length() > 2 && liczbaPoKropce[0] == '0')
+            if (liczbaPoKropce.length() > 1 && liczbaPoKropce[0] == '0')
                 return;
         }
         if (IP[IP.length() - 1] == '.')
@@ -63,7 +63,7 @@ int main()
     string s;
     cin >> s;
     int n = s.length();
-    if (s[0] == '0' || n < 4 || n > 16) //TODO do sprawdzenia czy drugi warunek jest prawdziwy
+    if (n < 4 || n > 12) //TODO do sprawdzenia czy drugi warunek jest prawdziwy
     {
         cout << "NO";
         return 0;
@@ -75,7 +75,7 @@ int main()
         TIP[i] = s[i] - '0';
     }
     wypisujeIP(TIP, 0, 3, "", n);
-    
+
     if (liczbaZnalezionychIP == 0)
         cout << "NO" << endl;
 

@@ -12,6 +12,6 @@ int main()
     int maxPrzedzial = 1000;
     cout << n << endl;
     for (int i = 0; i < n; i++)
-        cout <<  maxPrzedzial << " ";
+        cout << maxPrzedzial << " ";
     return 0;
 }
