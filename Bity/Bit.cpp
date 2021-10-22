@@ -30,6 +30,7 @@ bool sprawdzaCzyPodstringJestPotega5(string binarna)
             else
                 return false;
     }
+    return false;
 }
 void ZnajdujeIlePoteg5JestWLiczbieBinarniej(string binarna, int numberWycinka)
 {
@@ -46,7 +47,8 @@ void ZnajdujeIlePoteg5JestWLiczbieBinarniej(string binarna, int numberWycinka)
         string wycinekBinarnej = binarna.substr(0, i);
         if (sprawdzaCzyPodstringJestPotega5(wycinekBinarnej))
         {
-            ZnajdujeIlePoteg5JestWLiczbieBinarniej(binarna.substr(i), numberWycinka + 1);
+            string pozostaly = binarna.substr(i,binarna.length()-i);
+            ZnajdujeIlePoteg5JestWLiczbieBinarniej(pozostaly, numberWycinka + 1);
         }
     }
 }

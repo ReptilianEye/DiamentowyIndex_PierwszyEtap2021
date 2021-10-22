@@ -28,6 +28,8 @@ const int MAXINT = 2147483647;
 // **********************
 int znajdzPozycjePoMerge(int szukanyWierzcholek, vector<vector<Wierzcholek>> lista)
 {
+    if (szukanyWierzcholek == 0)
+        return 0;
     for (int i = 0; i < lista.size(); i++)
     {
         for (int j = 0; j < lista[i].size(); j++)
@@ -36,14 +38,16 @@ int znajdzPozycjePoMerge(int szukanyWierzcholek, vector<vector<Wierzcholek>> lis
                 return lista[i][j].gdzieProwadzi;
         }
     }
+    return -10000;
 }
 int zwracaKolejnyPotrzebny(int poprzedni, bool *potrzebne, int koniec)
 {
-    for (int i = poprzedni; i < koniec; i++)
+    for (int i = poprzedni; i <= koniec; i++)
     {
         if (potrzebne[i])
             return i;
     }
+    return -10000;
 }
 int main()
 {
@@ -57,7 +61,7 @@ int main()
     bool *potrzebneWierzcholki = new bool[koniec + 1]{false};
     potrzebneWierzcholki[0] = true;
     potrzebneWierzcholki[koniec] = true;
-    
+
     int iloscPotrzebnychWierzcholkow = 2;
     vector<Skrot> listaSkrotow;
 
