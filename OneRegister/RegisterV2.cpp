@@ -43,12 +43,20 @@ void zapiszOperacje(long long &liczbaPoczatkowa, long long liczbaDocelowa, int &
 
     liczbaPoczatkowa = liczbaDocelowa;
 }
+bool czyKwadrat(long long liczba)
+{
+    auto kwadrat = sqrt(liczba);
+    if (kwadrat * kwadrat == liczba)
+        return true;
+    return false;
+}
 void ZerujeLiczbeZSortowaniem(long long liczba, int iloscOperacji, string spisOperacji)
 {
     if (liczba == 0)
     {
         // cout << spisOperacji << endl;
-        wyniki.push_back(spisOperacji);
+        if (spisOperacji.length() < pow(10, 2))
+            wyniki.push_back(spisOperacji);
         if (najmniejszaIloscOperacji > iloscOperacji)
         {
             najmniejszaIloscOperacji = iloscOperacji;
@@ -61,23 +69,57 @@ void ZerujeLiczbeZSortowaniem(long long liczba, int iloscOperacji, string spisOp
         zapiszOperacje(liczba, 0, iloscOperacji, spisOperacji);
         return ZerujeLiczbeZSortowaniem(liczba, iloscOperacji, spisOperacji);
     }
-   if (sprawdzaCzyLiczbaJestPosortowana(liczba))
+    int gornyKwadrat = pow(ceil(sqrt(liczba)), 2);
+    for (long long roboczaLiczba = liczba; roboczaLiczba <= gornyKwadrat;roboczaLiczba++)
     {
-        string liczbaDoPermutacji = to_string(liczba);
-        while (prev_permutation(liczbaDoPermutacji.begin(), liczbaDoPermutacji.end()))
+        if (sprawdzaCzyLiczbaJestPosortowana(roboczaLiczba))
         {
-            if (liczbaDoPermutacji[0] != '0')
-                ZerujeLiczbeZSortowaniem(stoll(liczbaDoPermutacji), iloscOperacji + 1, 'p' + spisOperacji);
+            cout << roboczaLiczba << " ";
+
+            string liczbaDoPermutacji = to_string(roboczaLiczba);
+            while (prev_permutation(liczbaDoPermutacji.begin(), liczbaDoPermutacji.end()))
+            {
+                if (liczbaDoPermutacji[0] != '0')
+                    ZerujeLiczbeZSortowaniem(stoll(liczbaDoPermutacji), iloscOperacji + 1, 'p' + spisOperacji);
+            }
         }
+        if (czyKwadrat(roboczaLiczba))
+        {
+            long long pierw = sqrt(roboczaLiczba);
+            // spisOperacji = " " + to_string(liczba) + 's' + spisOperacji;
+
+            ZerujeLiczbeZSortowaniem(pierw, iloscOperacji + 1, 's' + spisOperacji);
+        }
+        spisOperacji = 'd' + spisOperacji;
+        iloscOperacji++;
+        if(spisOperacji.length() > 100)
+            return;
     }
-    int najblizszyPierw = round(sqrt(liczba));
-    zapiszOperacje(liczba, pow(najblizszyPierw, 2), iloscOperacji, spisOperacji);
+    int dolnyKwadrat = pow(floor(sqrt(liczba)), 2);
+    for (long long roboczaLiczba = liczba; roboczaLiczba >= dolnyKwadrat; roboczaLiczba--)
+    {
+        if (sprawdzaCzyLiczbaJestPosortowana(roboczaLiczba))
+        {
+            cout << roboczaLiczba << " ";
+            string liczbaDoPermutacji = to_string(roboczaLiczba);
+            while (prev_permutation(liczbaDoPermutacji.begin(), liczbaDoPermutacji.end()))
+            {
+                if (liczbaDoPermutacji[0] != '0')
+                    ZerujeLiczbeZSortowaniem(stoll(liczbaDoPermutacji), iloscOperacji + 1, 'p' + spisOperacji);
+            }
+        }
+        if (czyKwadrat(roboczaLiczba))
+        {
+            long long pierw = sqrt(roboczaLiczba);
+            // spisOperacji = " " + to_string(liczba) + 's' + spisOperacji;
 
-    spisOperacji = " " + to_string(liczba) + 's' + spisOperacji;
-    liczba = sqrt(liczba);
-    iloscOperacji++;
-
-    ZerujeLiczbeZSortowaniem(liczba, iloscOperacji, spisOperacji);
+            ZerujeLiczbeZSortowaniem(pierw, iloscOperacji + 1, 's' + spisOperacji);
+        }
+        spisOperacji = 'i' + spisOperacji;
+        iloscOperacji++;
+        if(spisOperacji.length() > 100)
+            return;
+    }
 }
 
 int main()

@@ -56,7 +56,7 @@ int main()
         }
         iloscOperacji = iloscOperacji + iloscZmniejszonychO1;
     }
-    cout << iloscOperacji;
+    cout << iloscOperacji << endl;
 
     return 0;
 }

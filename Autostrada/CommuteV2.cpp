@@ -5,7 +5,7 @@ using namespace std;
 
 // Typy danych
 
-class Wierzcholek
+class Krawedz
 {
 public:
     int wartoscBezMerge;
@@ -26,7 +26,7 @@ const int MAXINT = 2147483647;
 // **********************
 // *** PROGRAM GŁÓWNY ***
 // **********************
-int znajdzPozycjePoMerge(int szukanyWierzcholek, vector<vector<Wierzcholek>> lista)
+int znajdzPozycjePoMerge(int szukanyWierzcholek, vector<vector<Krawedz>> lista)
 {
     for (int i = 0; i < lista.size(); i++)
     {
@@ -87,7 +87,7 @@ int main()
     int *tablicasciezkiP = new int[n]; // Tablica poprzedników
     bool *QS = new bool[n];            // Zbiory Q i S
     int *tablicaWag = new int[n];
-    vector<vector<Wierzcholek>> listaSasiedztwa; // Tablica list sąsiedztwa
+    vector<vector<Krawedz>> listaSasiedztwa; // Tablica list sąsiedztwa
 
     // przygotowanie tablicy danych
     for (i = 0; i < n; i++)
@@ -95,7 +95,7 @@ int main()
         tablicaKosztowD[i] = MAXINT;
         tablicasciezkiP[i] = -1;
         QS[i] = false;
-        vector<Wierzcholek> a;
+        vector<Krawedz> a;
         listaSasiedztwa.push_back(a);
     }
 
@@ -103,7 +103,7 @@ int main()
     for (int i = 0; i < n - 1; i++)
     {
         int wartoscBezMerge = zwracaKolejnyPotrzebny(poprzedniWierzcholek + 1, potrzebneWierzcholki, koniec);
-        Wierzcholek NowyWierzcholek;
+        Krawedz NowyWierzcholek;
         NowyWierzcholek.wartoscBezMerge = wartoscBezMerge;
         NowyWierzcholek.gdzieProwadzi = i + 1;
         NowyWierzcholek.waga = wartoscBezMerge - poprzedniWierzcholek;
@@ -123,7 +123,7 @@ int main()
 
         
 
-        Wierzcholek NowyWierzcholek;
+        Krawedz NowyWierzcholek;
         NowyWierzcholek.gdzieProwadzi = y; // Wierzchołek docelowy krawędzi
         NowyWierzcholek.waga = w;          // Waga krawędzi
 

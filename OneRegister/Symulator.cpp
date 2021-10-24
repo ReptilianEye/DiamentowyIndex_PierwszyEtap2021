@@ -35,18 +35,18 @@ int main()
 {
     //********** wczytywanie wejscia
     string spisInstrukcji;
-    int iloscIntrukcji = 387047;
     int pierwotna;
-    for (int i = 0; i < iloscIntrukcji; i++)
-    {
-        cin >> pierwotna >> spisInstrukcji;
-        int wynikPoPrzetworzeniu = ZwracaWynikPoIntrukcjach(spisInstrukcji);
-        if (wynikPoPrzetworzeniu != pierwotna)
-        {
-            cout << pierwotna << " " << wynikPoPrzetworzeniu << endl;
-        }
-        // else
-            // cout << pierwotna << endl;
-    }
+    int i = 1;
+    // while (!cin.eof())
+    // {
+    //     cin >> pierwotna >> spisInstrukcji;
+    //     int wynikPoPrzetworzeniu = ZwracaWynikPoIntrukcjach(spisInstrukcji);
+    //     if (wynikPoPrzetworzeniu != pierwotna)
+    //     {
+    //         cout << i << " " << pierwotna << " " << wynikPoPrzetworzeniu << " " << spisInstrukcji << endl;
+    //     }
+    //     i++;
+    // }
+    cout << ZwracaWynikPoIntrukcjach("iiisssiiiiipiipiiiiiiiiiiipiiiiiiiiiiiiiiiiiiiiiiiii") << endl;
     return 0;
 }

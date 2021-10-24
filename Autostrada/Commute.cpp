@@ -5,7 +5,7 @@ using namespace std;
 
 // Typy danych
 
-class Wierzcholek
+class Krawedz
 {
 public:
     int gdzieProwadzi;
@@ -36,7 +36,7 @@ int main()
     int *tablicasciezkiP = new int[n]; // Tablica poprzedników
     bool *QS = new bool[n];            // Zbiory Q i S
     int *tablicaWag = new int[n];
-    vector<vector<Wierzcholek>> listaSasiedztwa; // Tablica list sąsiedztwa
+    vector<vector<Krawedz>> listaSasiedztwa; // Tablica list sąsiedztwa
 
     // przygotowanie tablicy danych
     for (i = 0; i < n; i++)
@@ -44,12 +44,12 @@ int main()
         tablicaKosztowD[i] = MAXINT;
         tablicasciezkiP[i] = -1;
         QS[i] = false;
-        vector<Wierzcholek> a;
+        vector<Krawedz> a;
         listaSasiedztwa.push_back(a);
     }
     for (int i = 0; i < n - 1; i++)
     {
-        Wierzcholek NowyWierzcholek;           // Tworzymy element listy sąsiedztwa
+        Krawedz NowyWierzcholek;           // Tworzymy element listy sąsiedztwa
         NowyWierzcholek.gdzieProwadzi = i + 1; // Wierzchołek docelowy krawędzi
         NowyWierzcholek.waga = 1;              // Waga krawędzi
 
@@ -63,7 +63,7 @@ int main()
         if (y > koniec)     //wykluczamy przypadek kiedy skrot jest za koncem trasy
             continue;
 
-        Wierzcholek NowyWierzcholek;       // Tworzymy element listy sąsiedztwa
+        Krawedz NowyWierzcholek;       // Tworzymy element listy sąsiedztwa
         NowyWierzcholek.gdzieProwadzi = y; // Wierzchołek docelowy krawędzi
         NowyWierzcholek.waga = w;          // Waga krawędzi
 
